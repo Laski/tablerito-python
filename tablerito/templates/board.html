@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ board.name }} · Tablerito</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+  <script src="{{ url_for('static', filename='board.js') }}" defer></script>
+</head>
+<body>
+<header>
+  <a class="brand" href="{{ url_for('show_board') }}">Tablerito</a>
+  <h1>{{ board.name }}</h1>
+</header>
+
+<main class="lists">
+  {% for card_list in board.lists %}
+  <section class="list" data-list-id="{{ card_list.id }}">
+    <h2>{{ card_list.name }}</h2>
+
+    {% for card in card_list.cards %}
+    <article class="card">
+      <p>{{ card.title }}</p>
+
+      {% if card.attachments %}
+      <ul class="attachments">
+        {% for attachment in card.attachments %}
+        <li><a href="{{ url_for('download', name=attachment) }}">{{ attachment }}</a></li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <form class="move" method="post" hidden
+            action="{{ url_for('move_card', card_id=card.id) }}">
+        <input type="hidden" name="list_id">
+      </form>
+
+      <form class="attach" method="post" enctype="multipart/form-data"
+            action="{{ url_for('attach', card_id=card.id) }}">
+        <label>Adjuntar archivo<input type="file" name="file" hidden></label>
+      </form>
+    </article>
+    {% endfor %}
+
+    <form class="inline" method="post"
+          action="{{ url_for('create_card', list_id=card_list.id) }}">
+      <input name="title" placeholder="Nueva tarjeta" required>
+      <button>Agregar</button>
+    </form>
+  </section>
+  {% endfor %}
+</main>
+
+</body>
+</html>

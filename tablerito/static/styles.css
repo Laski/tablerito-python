@@ -1,0 +1,123 @@
+:root {
+  --blue: #1d25ca;
+  --blue-mid: #1c2483;
+  --blue-dark: #221758;
+  --cream: #e8eadc;
+  --cream-light: #f3f6ed;
+  --sky-light: #d3d9f1;
+  --sky: #99abef;
+}
+
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  background: var(--blue);
+  color: var(--blue-dark);
+}
+
+header {
+  display: flex;
+  align-items: baseline;
+  gap: 1.5rem;
+  padding: 0.75rem 1rem;
+  background: var(--blue-dark);
+  color: var(--cream-light);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.brand {
+  color: var(--cream-light);
+  font-weight: bold;
+  text-decoration: none;
+}
+
+main {
+  padding: 1rem;
+}
+
+.lists {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  overflow-x: auto;
+}
+
+.list {
+  flex: 0 0 17rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background: var(--cream);
+}
+
+.list h2 {
+  margin: 0.25rem 0.25rem 0.5rem;
+  font-size: 1rem;
+}
+
+.card {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background: white;
+  box-shadow: 0 1px 0 rgba(34, 23, 88, 0.25);
+}
+
+.card p {
+  margin: 0 0 0.5rem;
+}
+
+.card form {
+  margin-top: 0.25rem;
+  font-size: 0.8rem;
+}
+
+.attach label {
+  color: var(--blue-mid);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.attachments {
+  margin: 0 0 0.5rem;
+  padding-left: 1.2rem;
+  font-size: 0.85rem;
+}
+
+.attachments a {
+  color: var(--blue);
+}
+
+.inline {
+  display: flex;
+  gap: 0.25rem;
+}
+
+.inline input {
+  flex: 1;
+  min-width: 0;
+}
+
+button {
+  border: 0;
+  border-radius: 3px;
+  padding: 0.25rem 0.6rem;
+  background: var(--blue);
+  color: var(--cream-light);
+  cursor: pointer;
+}
+
+.card[draggable='true'] {
+  cursor: grab;
+}
+
+.card.dragging {
+  opacity: 0.5;
+}
+
+.list.drop-target {
+  outline: 3px solid var(--sky);
+}

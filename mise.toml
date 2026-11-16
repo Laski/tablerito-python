@@ -1,0 +1,16 @@
+# What Tablerito needs to run. uv manages the dependencies (pyproject.toml and uv.lock).
+[tools]
+python = "3.14"
+uv = "0.13"
+
+[env]
+# Make uv use mise's Python instead of downloading another one
+UV_PYTHON_DOWNLOADS = "never"
+
+[tasks.dev]
+description = "Start Tablerito at http://localhost:8080"
+run = "uv run python -m tablerito"
+
+[tasks.test]
+description = "Run the tests"
+run = "uv run pytest"
